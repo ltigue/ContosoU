@@ -47,13 +47,13 @@ namespace ContosoUniversity.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="LastName,FirstMidName,EnrollmentDate")] Student student)
+        public ActionResult Create([Bind(Include="ID, LastName,FirstMidName,EnrollmentDate")] Student student)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    db.Students.Add(student);
+                    db.Entry(student).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
