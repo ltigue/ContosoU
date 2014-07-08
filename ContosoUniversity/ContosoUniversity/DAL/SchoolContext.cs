@@ -18,7 +18,7 @@ namespace ContosoUniversity.DAL
         public DbSet<Enrollment> Enrollments { get; set; }
         public DbSet<Course> Courses { get; set; }
 
-        protected override void OneModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
