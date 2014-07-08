@@ -19,31 +19,18 @@ namespace ContosoUniversity.DAL
                new Student{FirstMidName="Meredith", LastName="Alonso", EnrollmentDate=DateTime.Parse("2002-09-01")}, 
                new Student{FirstMidName="Arturo", LastName="Anand", EnrollmentDate=DateTime.Parse("2003-09-01")},
                new Student{FirstMidName="Gytis", LastName="Barzdukas", EnrollmentDate=DateTime.Parse("2002-09-01")},
-               new Student{FirstMidName="Yan", LastName="Li", EnrollmentDate=DateTime.Parse("2002-09-01")}, 
+               new Student{FirstMidName="Yan", LastName="Li", EnrollmentDate=DateTime.Parse("2002-09-01")},  
+               new Student{FirstMidName="Peggy",LastName="Justice",EnrollmentDate=DateTime.Parse("2001-09-01")}, 
+               new Student{FirstMidName="Laura",LastName="Norman",EnrollmentDate=DateTime.Parse("2003-09-01")}, 
+               new Student{FirstMidName="Nino",LastName="Olivetto",EnrollmentDate=DateTime.Parse("2005-09-01")}, 
 
- new Student{FirstMidName="Peggy",LastName="Justice",EnrollmentDate=DateTime.Parse("2001-09-01")}, 
+            }; 
 
- new 
+            students.ForEach(s => context.Students.Add(s)); 
+            context.SaveChanges(); 
+            var courses = new List<Course> 
 
-Student{FirstMidName="Laura",LastName="Norman",EnrollmentDate=DateTime.Parse(
-
-"2003-09-01")}, 
-
- new 
-
-Student{FirstMidName="Nino",LastName="Olivetto",EnrollmentDate=DateTime.Parse
-
-("2005-09-01")} 
-
- }; 
-
- students.ForEach(s => context.Students.Add(s)); 
-
- context.SaveChanges(); 
-
- var courses = new List<Course> 
-
- { 
+            { 
 
  new Course{CourseID=1050,Title="Chemistry",Credits=3}, 
 
@@ -59,7 +46,7 @@ Student{FirstMidName="Nino",LastName="Olivetto",EnrollmentDate=DateTime.Parse
 
  new Course{CourseID=2042,Title="Literature",Credits=4} 
 
- }; 
+            }; 
 
  courses.ForEach(s => context.Courses.Add(s)); 
 
