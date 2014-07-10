@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ContosoUniversity.DAL;
+using ContosoUniversity.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,7 +9,9 @@ using System.Web.Mvc;
 namespace ContosoUniversity.Controllers
 {
     public class HomeController : Controller
+
     {
+        private SchoolContext db = new SchoolContext();
         public ActionResult Index()
         {
             return View();
@@ -15,11 +19,22 @@ namespace ContosoUniversity.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+           IQueryable<EnrollmentDateGroup> data = from student in db.Students group student by student.EnrollmentDate into dateGroup select new EnrollmentDateGroup() 
+                { 
 
-            return View();
+                EnrollmentDate = dateGroup.Key, 
+                StudentCount = dateGroup.Count()
+                }; 
+
+           return View(data.ToList()); 
+
+
         }
-
+        protected override void Dispose(bool disposing)
+        {
+            db.Dispose();
+            base.Dispose(disposing);
+        }
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
